@@ -1,0 +1,77 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="text-center">{{ user.first_name }}</h2>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Nombre:</th>
+                                <td>{{ user.first_name }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email:</th>
+                                <td>{{ user.email }}</td>
+                            </tr>
+                            {% if pro %}
+                                <tr>
+                                    <th scope="row">Telefono:</th>
+                                    <td>{{ pro.phone }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Genero:</th>
+                                    <td>{{ pro.gender }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Edad:</th>
+                                    <td>{{ pro.age }}</td>
+                                </tr>
+                                {% if pro.user.last_name == "Patient" %}
+                                    <tr>
+                                        <th scope="row">Direccion:</th>
+                                        <td>{{ pro.address }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Grupo sanguineo:</th>
+                                        <td>{{ pro.bloodgroup }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Documentacion:</th>
+                                        <td>{{ pro.casepaper }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <a href="{{ pro.image.url }}" class="btn btn-success btn-lg mt-3">Reporte medico</a>
+                                            <a href="{% url 'uprofile' %}" class="btn btn-primary btn-lg mt-3">Actualizar Perfil</a>
+                                        </td>
+                                    </tr>
+                                {% endif %}
+                                {% if pro.user.last_name == "Doctor" or pro.user.last_name == "Secretary" %}
+                                    <tr>
+                                        <th scope="row">Departamento:</th>
+                                        <td>{{ pro.Department }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Asistencia:</th>
+                                        <td>{{ pro.attendance }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Salario:</th>
+                                        <td>{{ pro.salary }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

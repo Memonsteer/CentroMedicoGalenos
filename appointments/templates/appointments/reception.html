@@ -1,0 +1,94 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="p-4 bg-info text-white">
+                <h1>Citas totales</h1>
+                <h1>{{ tot }}</h1>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="p-4 bg-primary text-white">
+                <h1>Citas Completadas</h1>
+                <h1>{{ com }}</h1>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="p-4 bg-success text-white">
+                <h1>Proximas citas</h1>
+                <h1>{{ pend }}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <a href="{% url 'setapt' %}" class="btn btn-primary mb-3">NUEVA CITA</a>
+        <table class="table">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Paciente</th>
+                    <th>Especialista</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ap in ap %}
+                <tr>
+                    <td>{{ ap.date }}</td>
+                    <td>{{ ap.time }}</td>
+                    <td>{{ ap.patient }}</td>
+                    <td>{{ ap.doctor }}</td>
+                    <td>{{ ap.status }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-5">
+        <a href="{% url 'crtpat' %}" class="btn btn-primary mb-3">Crear Paciente</a>
+        <table class="table">
+            <thead class="bg-dark text-white">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Email</th>
+                    <th>Genero</th>
+                    <th>Edad</th>
+                    <th>Eliminar</th>
+                    <th>Actualizar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in p %}
+                <tr>
+                    <td>{{ p.user.first_name }}</td>
+                    <td>{{ p.phone }}</td>
+                    <td>{{ p.user.email }}</td>
+                    <td>{{ p.gender }}</td>
+                    <td>{{ p.age }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'deletepat' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ p.pid }}" name="pid">
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form method="POST" action="{% url 'updatepat' %}">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ p.pid }}" name="pid">
+                            <button type="submit" class="btn btn-success">Actualizar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

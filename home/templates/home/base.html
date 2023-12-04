@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Centro Médico Galenos</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+
+                            <a class="nav-link" href="{% url 'login' %}">Iniciar sesion</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'register' %}">Registrarse</a>
+                        </li>
+                    {% endif %}
+                    {% ifequal user.last_name "Reception" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'reception' %}">Dashboard</a>
+                        </li>
+                    {% endifequal %}
+                    {% ifequal user.last_name "HR" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounting' %}">Accounting</a>
+                        </li>
+                    {% endifequal %}
+                    {% ifequal user.last_name "Doctor" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'appointments' %}">Citas Medicas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'showpres' %}">Diagnosticos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'uprofile' %}"> Actualizar Perfil</a>
+                        </li>
+                    {% endifequal %}
+                    {% ifequal user.last_name "Patient" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}">Perfil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'appointments' %}">Citas Medicas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'payments' %}">Facturas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'showmedhis' %}">Historial Medico</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'uprofile' %}">Actualizar Perfil</a>
+                        </li>
+                    {% endifequal %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Your main content -->
+    <div class='main'>
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

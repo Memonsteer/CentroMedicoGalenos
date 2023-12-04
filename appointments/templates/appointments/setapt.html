@@ -1,0 +1,82 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label for="pat" class="form-label">Paciente:</label>
+                <select name="pat" class="form-select">
+                    {% for p in p %}
+                    <option value="{{ p }}">{{ p }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="doc" class="form-label">Doctor:</label>
+                <select name="doc" class="form-select">
+                    {% for d in d %}
+                    <option value="{{ d }}">{{ d }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="status" class="form-label">Status:</label>
+                <select name="status" class="form-select">
+                    <option value="En espera">En espera</option>
+                    <option value="Completado">Completada</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="time" class="form-label">Time:</label>
+                <select name="hours" class="form-select">
+                    {% for h in h %}
+                    <option value="{{ h }}">{{ h }}</option>
+                    {% endfor %}
+                </select>
+                <select name="min" class="form-select">
+                    {% for m in m %}
+                    <option value="{{ m }}">{{ m }}</option>
+                    {% endfor %}
+                </select>
+                <select name='am' class="form-select">
+                    <option value="am">am</option>
+                    <option value="pm">pm</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="date" class="form-label">Fecha:</label>
+                <select name='d' class="form-select">
+                    {% for da in da %}
+                    <option value="{{ da }}">{{ da }}</option>
+                    {% endfor %}
+                </select>
+                <select name="m" class="form-select">
+                    <option value="January">Enero</option>
+                    <option value="Febrero">Febrero</option>
+                    <option value="Marzo">Marzo</option>
+                    <option value="Abril">Abril</option>
+                    <option value="Mayo">Mayo</option>
+                    <option value="Junio">Junio</option>
+                    <option value="Julio">Julio</option>
+                    <option value="Agosto">Agosto</option>
+                    <option value="Septiembre">Septiembre</option>
+                    <option value="Octubre">Octubre</option>
+                    <option value="Noviembre">Noviembre</option>
+                    <option value="Diciembre">Diciembre</option>
+
+
+                    <!-- Rest of the options for months -->
+                </select>
+                <select name='y' class="form-select">
+                    {% for y in y %}
+                    <option value="{{ y }}">{{ y }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Actualizar</button>
+    </form>
+</div>
+{% endblock %}

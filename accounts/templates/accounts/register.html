@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Página de Registro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        {% load static %}
+        body {
+            background-image: url('{% static "images/background4.jpg" %}');
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+            background-size: cover; /* Adjusts the background size */
+            background-position: center; 
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Establecer la altura del contenedor como el alto completo de la ventana */
+        }
+        form {
+            width: 35%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+            background-color: #fff;
+            border: 2px solid #007bff; /* Blue border */
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        select {
+            margin-bottom: 20px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+        .footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <h1 class="text-center mb-4" style="color: #000; font-family: Arial;">Registrarse</h1>
+            {% for m in messages %}
+                <p class="alert alert-success">{{m}}</p>
+            {% endfor %}
+            <select name='type' class="form-control">
+                <option value="Patient">Paciente</option>
+                <option value="Doctor">Doctor</option>
+                <option value="Secretary">Secretaria</option>
+
+            </select>
+            <input type="text" class="form-control" placeholder="Nombre Completo" name="fname" required>
+            <input type="email" class="form-control" placeholder="Correo Electrónico" name="email" required>
+            <input type="text" class="form-control" placeholder="Número de Teléfono" name="phone" required>
+            <input type="password" class="form-control" placeholder="Contraseña" name="password1" required>
+            <input type="password" class="form-control" placeholder="Repetir Contraseña" name="password2" required>
+            <br>
+            <a href="{% url 'login' %}" class="d-block mb-3">¿Ya tienes una cuenta? ¡Inicia sesión ahora!</a>
+            <input type="submit" value="Registrar" class="btn btn-primary btn-block">
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <div class="footer">
+        <p>&copy; 2023 Centro Médico Galenos</p>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

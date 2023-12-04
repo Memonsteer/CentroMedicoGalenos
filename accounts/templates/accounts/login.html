@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Set the container height to full viewport height */
+        }
+        form {
+            width: 35%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.1);
+            background-color: #fff;
+        }
+        input[type="text"],
+        input[type="password"] {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form method='POST'>
+            <h1 class="text-center mb-4">Iniciar sesion</h1>
+            {% csrf_token %}
+            <input type="text" class="form-control" placeholder="Email" name="email">
+            <input type="password" class="form-control" placeholder="Password" name="password">
+            <a href="{% url 'register' %}" class="d-block mt-3 mb-3">¿No tienes una cuenta? Registrate Ahora!</a>
+            {% for m in messages %}
+                <p class="alert alert-danger">{{m}}</p>
+            {% endfor %}
+            <input type="submit" value="Entrar" class="btn btn-primary btn-block">
+        </form>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

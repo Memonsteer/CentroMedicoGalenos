@@ -1,0 +1,76 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero bg-light text-center py-5">
+    <style>
+        {% load static %}
+        .hero {
+            background-image: url('{% static "images/hero.jpg" %}');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+        }
+    </style>
+    <div class="container">
+        <h1 class="display-4">Bienvenido al Centro Médico Galenos</h1>
+        <p class="lead">Innovación en Cuidado de la Salud</p>
+    </div>
+</section>
+
+<!-- Why Us Section -->
+<section class="why-us py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="mb-4">¿Por qué elegirnos?</h2>
+                <p class="text-muted">En Centro Médico Galenos, nos comprometemos a proporcionar un cuidado médico excepcional y servicios personalizados para mejorar tu salud y bienestar. Aquí hay algunas razones para elegirnos:</p>
+                <ul class="list-unstyled">
+                    <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>Cuidado médico de calidad</li>
+                    <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>Profesionales experimentados</li>
+                    <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>Tecnología de vanguardia</li>
+                    <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>Enfoque personalizado</li>
+                    <li class="mb-3"><i class="bi bi-check-circle-fill text-success me-2"></i>Compromiso con la comunidad</li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <!-- You can add an image or any other content here -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer bg-dark text-white py-4">
+    <div class="container text-center">
+        <p>&copy; 2023 Centro Médico Galenos</p>
+    </div>
+</footer>
+
+<style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
+
+    .hero {
+        background-image: url('{% static "images/hero.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        color: #fff;
+    }
+
+    .why-us {
+        background-color: #f8f9fa; /* Choose a background color that suits your design */
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+    }
+</style>
+{% endblock %}
